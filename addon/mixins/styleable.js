@@ -16,9 +16,9 @@ export default Ember.Mixin.create({
       this.parent = subject;
 
       for(let prop in subject){
-        if(prop.match("CSS$") == 'CSS'){
-          let cleanName = prop.replace(/CSS/g,''),
-            parsed = this.parseValues(subject[prop]);
+        if(prop.match('CSS$') === 'CSS'){
+          const cleanName = prop.replace(/CSS/g,'');
+          const parsed = this.parseValues(subject[prop]);
 
           this.declarations[cleanName] = {
             parsed,
@@ -55,9 +55,9 @@ export default Ember.Mixin.create({
     },
 
     buildReferences(parts){
-      let refs = {};
+      const refs = {};
       parts.forEach( (part, i) => {
-        if(i%2 !== 0) {
+        if(i % 2 !== 0) {
           refs[part.match(/[\w\.]+/)[0]] = i;
         }
       });
@@ -66,13 +66,13 @@ export default Ember.Mixin.create({
 
     firstRender(declaration){
       for(let ref in declaration.refs){
-        declaration.parsed[declaration.refs[ref]] = parent.get(ref) || undefined;
+        declaration.parsed[declaration.refs[ref]] = this.parent.get(ref) || undefined;
       }
     },
 
     render(declarationName){
       return this.declarations[declarationName].parsed.join('');
-    },
+    }
 
   }
 
