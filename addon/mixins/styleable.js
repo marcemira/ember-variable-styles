@@ -127,8 +127,6 @@ export default Ember.Mixin.create({
     Ember.run.throttle(this, () => {
       this.set(valueName, value);
     }, spacing);
-  },
-
-
+  }
 
 });
