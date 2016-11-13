@@ -19,3 +19,4 @@ testem.log
 .idea/*
 /.idea/workspace.xml
 /.idea/watcherTasks.xml
+/.idea/
